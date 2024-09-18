@@ -1,0 +1,38 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int doubleFactorial(int n) {
+    if (n <= 0) {
+        return 1;
+    } else {
+        return n * doubleFactorial(n - 2);
+    }
+}
+
+double t(double x) {
+    double chisl = 0.0;
+    double znam = 0.0;
+
+    for (int k = 0; k < 11; k++) {
+        chisl += pow(x, 2 * k + 1) / doubleFactorial(2 * k + 1);
+    }
+
+    for (int k = 0; k < 11; k++) {
+        znam += pow(x, 2 * k) / doubleFactorial(2 * k);
+    }
+
+    return chisl / znam;
+}
+
+int main() {
+    double y;
+    cin >> y;
+
+    double res = 7 * t(0.25) + 2 * t(1 + y) / (6 - t(pow(y, 2) - 1));
+
+    cout << res << endl;
+
+    return 0;
+}
